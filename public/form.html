@@ -1,45 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
   <title>TikTok Reup Tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: sans-serif;
-      margin: 40px;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff0050;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
     }
 
     input,
     button {
-      padding: 10px;
-      margin: 5px 0;
       width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
     }
 
     button {
-      cursor: pointer;
+      background-color: #ff0050;
+      color: white;
+      border: none;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #e60045;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
     }
 
     pre {
-      background: #f5f5f5;
-      padding: 10px;
+      background: #f0f0f0;
+      padding: 1rem;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .icon {
+      margin-right: 8px;
     }
   </style>
 </head>
 
 <body>
-  <h2>🔑 TikTok Reup Tool</h2>
-  <a href="/login"><button>Login TikTok</button></a>
-  <button onclick="refresh()">Refresh Token</button>
-  <hr>
-  <input id="ytUrl" placeholder="Enter YouTube link" />
-  <button onclick="reup()">Reup</button>
-  <pre id="log"></pre>
+  <div class="container">
+    <h2>🔑 TikTok Reup Tool</h2>
+
+    <div class="actions">
+      <a href="/login"><button>🔐 Login with TikTok</button></a>
+      <button onclick="refresh()">🔄 Refresh Token</button>
+    </div>
+
+    <hr>
+
+    <input id="ytUrl" placeholder="📺 Enter YouTube video link..." />
+    <button onclick="reup()">🚀 Reup to TikTok</button>
+
+    <pre id="log">Status messages will appear here...</pre>
+  </div>
 
   <script>
     async function reup() {
       const url = document.getElementById("ytUrl").value;
-      document.getElementById("log").textContent = "Processing...";
+      document.getElementById("log").textContent = "⏳ Processing...";
       const resp = await fetch("/reup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
