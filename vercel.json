@@ -1,0 +1,24 @@
+{
+    "rewrites": [
+        {
+            "source": "/login",
+            "destination": "/api/server"
+        },
+        {
+            "source": "/auth/callback",
+            "destination": "/api/server"
+        },
+        {
+            "source": "/refresh",
+            "destination": "/api/server"
+        },
+        {
+            "source": "/reup",
+            "destination": "/api/server"
+        },
+        {
+            "source": "/",
+            "destination": "/api/server"
+        }
+    ]
+}
