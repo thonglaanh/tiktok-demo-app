@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 
 // Serve index.html
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"), (err) => {
+    res.sendFile(path.join(__dirname, "public", "form.html"), (err) => {
         if (err) {
             console.error("SendFile error:", err);
             res.status(500).send("Something went wrong");
@@ -138,3 +138,4 @@ app.post("/reup", async (req, res) => {
 // Use dynamic port (Vercel) or fallback 5000 for local
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+

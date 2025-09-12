@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TikTok Reup Tool</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+    }
+
+    input,
+    button {
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    pre {
+      background: #f5f5f5;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>🔑 TikTok Reup Tool</h2>
+  <a href="/login"><button>Login TikTok</button></a>
+  <button onclick="refresh()">Refresh Token</button>
+  <hr>
+  <input id="ytUrl" placeholder="Enter YouTube link" />
+  <button onclick="reup()">Reup</button>
+  <pre id="log"></pre>
+
+  <script>
+    async function reup() {
+      const url = document.getElementById("ytUrl").value;
+      document.getElementById("log").textContent = "Processing...";
+      const resp = await fetch("/reup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ youtubeUrl: url })
+      });
+      document.getElementById("log").textContent = await resp.text();
+    }
+
+    async function refresh() {
+      const resp = await fetch("/refresh");
+      document.getElementById("log").textContent = await resp.text();
+    }
+  </script>
+</body>
+
+</html>
